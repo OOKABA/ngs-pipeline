@@ -1,13 +1,13 @@
 import gzip
 
 
-
 def open_fastqa(path):
     if path.endswith(".gz"):
         return gzip.open(path, "rt")
     else:
-        return open(path,"rt")
-    
+        return open(path, "rt")
+
+
 def count_read(path):
     line_count = 0
 
@@ -18,6 +18,7 @@ def count_read(path):
     if line_count % 4 != 0:
         raise ValueError("Invalid FASTQ Format")
     return line_count // 4
+
 
 def filter_read_by_gc(path, min_gc, max_gc):
     passed_reads = []
@@ -43,6 +44,3 @@ def filter_read_by_gc(path, min_gc, max_gc):
                     passed_reads.append(current_ID)
 
     return passed_reads
-
-
-

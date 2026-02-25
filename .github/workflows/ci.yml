@@ -27,7 +27,20 @@ jobs:
       - name: Run tests
         run: poetry run pytest
 
-      - name: Build Docker Image
-        run: docker build -t ngs-pipeline:latest .
+      - name: Log in to Github Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Push Docker Image
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/ngs-pipeline
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+          docker build -t $IMAGE_ID:latest .
+          docker push $IMAGE_ID:latest
+    
         
    

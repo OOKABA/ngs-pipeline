@@ -8,7 +8,6 @@ authors = [
 requires-python = ">=3.12"
 dependencies = [
     "click (>=8.3.1,<9.0.0)",
-    "pysam (>=0.23.3,<0.24.0)"
 ]
 
 [build-system]

@@ -80,7 +80,7 @@ def run_pipeline(fastq, ref, output_dir):
             ["bcftools", "mpileup", "-f", ref, str(sorted_bam)], str(pileup_file)
         )
 
-        logger.info("step 8: Converting Pileup to VCF now...")
+        logger.info("Step 8: Converting Pileup to VCF now...")
         run_command(["bcftools", "call", "-mv", "-Ov", str(pileup_file)], str(vcf_file))
 
         logger.info("--- Pipeline completed successfully! ---")

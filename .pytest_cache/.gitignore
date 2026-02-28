@@ -3,6 +3,11 @@ __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
+*.pem
+*.pem:Zone.Identifier
+pipeline.log
+
+**/__pycache__/
 
 
 .venv/
@@ -12,7 +17,8 @@ venv/
 
 *.log
 .pytest_cache/
-
+.mypy_cache/
+**experimental/
 
 .vscode/
 .idea/
@@ -27,3 +33,4 @@ venv/
 *.fasta
 *.fa
 results/
+

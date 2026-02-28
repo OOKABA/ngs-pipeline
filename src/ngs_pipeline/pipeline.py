@@ -58,6 +58,8 @@ def run_pipeline(fastq, ref, output_dir):
                 str(trimmed_fastq),
                 "-h",
                 str(qc_dir / "fast_report.html"),
+                "--thread",
+                "1",
             ]
         )
 

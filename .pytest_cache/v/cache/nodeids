@@ -1,7 +1,0 @@
-[
-  "tests/test_pipeline.py::test_count_read_basic",
-  "tests/test_pipeline.py::test_filter_reads_by_gc",
-  "tests/test_pipeline.py::test_run_command_failure",
-  "tests/test_pipeline.py::test_run_command_success",
-  "tests/test_pipeline.py::test_run_pipeline"
-]

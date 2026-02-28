@@ -27,3 +27,6 @@ packages = [{include = "ngs_pipeline", from = "src"}]
 
 [project.scripts]
 pipeline = "ngs_pipeline.cli:cli"
+
+[tool.mypy]
+ignore_missing_imports = true

@@ -61,26 +61,29 @@ def run_pipeline(fastq, ref, output_dir):
             ]
         )
 
-        logger.info("Step 3: Running aligment now...")
+        logger.info("Step 3: Indexing reference FASTA...")
+        run_command(["bwa", "index", ref])
+
+        logger.info("Step 4: Running aligment now...")
         run_command(["bwa", "mem", ref, str(trimmed_fastq)], str(sam_file))
 
-        logger.info("Step 4: SAM file is converting to BAM format...")
+        logger.info("Step 5: SAM file is converting to BAM format...")
         run_command(
             ["samtools", "view", "-b", str(sam_file)], str(bam_file), binary=True
         )
 
-        logger.info("Step 5: Running sorting BAM now...")
+        logger.info("Step 6: Running sorting BAM now...")
         run_command(["samtools", "sort", "-o", str(sorted_bam), str(bam_file)])
 
-        logger.info("Step 6: Creating BAM index now...")
+        logger.info("Step 7: Creating BAM index now...")
         run_command(["samtools", "index", str(sorted_bam)])
 
-        logger.info("Step 7: Converting BAM to Pileup now...")
+        logger.info("Step 8: Converting BAM to Pileup now...")
         run_command(
             ["bcftools", "mpileup", "-f", ref, str(sorted_bam)], str(pileup_file)
         )
 
-        logger.info("Step 8: Converting Pileup to VCF now...")
+        logger.info("Step 9: Converting Pileup to VCF now...")
         run_command(["bcftools", "call", "-mv", "-Ov", str(pileup_file)], str(vcf_file))
 
         logger.info("--- Pipeline completed successfully! ---")

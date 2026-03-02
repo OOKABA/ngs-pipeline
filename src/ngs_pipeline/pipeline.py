@@ -45,6 +45,18 @@ def run_pipeline(fastq, ref, output_dir):
 
     try:
 
+        logger.info("Step 0: Checking reference FASTA format...")
+        ref_path = Path(ref)
+        if ref_path.suffix == ".gz":
+            logger.info("Reference is gzipped. Unzipping automatically...")
+            run_command(["gunzip", str(ref_path)])
+            
+            ref = str(ref_path.with_suffix(''))
+            logger.info(f"New reference file is set to: {ref}")
+        else:
+
+            ref = str(ref_path)
+        
         logger.info("Step 1: Running FastQC for quality control...")
         run_command(["fastqc", str(fastq), "-o", str(qc_dir)])
 

@@ -3,7 +3,7 @@ name = "ngs-pipeline2"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "Ozan Orkun Kaba",email = "ozanorkunakab5@gmail.com"}
+    {name = "Ozan Orkun Kaba",email = "ozanorkunkaba5@gmail.com"}
 ]
 requires-python = ">=3.12"
 dependencies = [
